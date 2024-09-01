@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - Event Booking</title>
+    <link rel="stylesheet" href="book.css">
+</head>
+<body>
+    <div class="booking-container">
+        <h1>Book Your Event Now!</h1>
+
+        <form id="booking-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Event Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tickets">Number of Tickets:</label>
+                <input type="number" id="tickets" name="tickets" min="1" max="10" required>
+            </div>
+
+            <button type="submit">Book Now</button>
+        </form>
+
+        <div id="confirmation-message" class="hidden">
+            <h2>Booking Confirmed!</h2>
+            <p>Thank you for booking with us, <span id="confirm-name"></span>!</p>
+            <p>You have successfully booked <span id="confirm-tickets"></span> tickets for the event on <span id="confirm-date"></span>.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting in the traditional way
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+            const tickets = document.getElementById('tickets').value;
+
+            // Update confirmation message
+            document.getElementById('confirm-name').textContent = name;
+            document.getElementById('confirm-tickets').textContent = tickets;
+            document.getElementById('confirm-date').textContent = date;
+
+            // Hide the form and show the confirmation message
+            document.getElementById('booking-form').classList.add('hidden');
+            document.getElementById('confirmation-message').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
